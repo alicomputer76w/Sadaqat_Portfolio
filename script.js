@@ -143,4 +143,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
+  // 6. HERO PROFILE PHOTO FALLBACK
+  // If assets/profile.jpg is missing or fails to load, show the "SA"
+  // placeholder instead of a broken image icon.
+
+  const heroPhoto = document.getElementById("heroPhoto");
+  const heroPhotoImg = document.getElementById("heroPhotoImg");
+
+  if (heroPhoto && heroPhotoImg) {
+
+    const showPlaceholder = () => heroPhoto.classList.add("is-missing");
+
+    heroPhotoImg.addEventListener("error", showPlaceholder);
+
+    // Covers the case where the image failed before this script ran
+    if (heroPhotoImg.complete && heroPhotoImg.naturalWidth === 0) {
+      showPlaceholder();
+    }
+
+  }
+
 });
